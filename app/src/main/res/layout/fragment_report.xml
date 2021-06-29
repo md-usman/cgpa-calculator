@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ReportFragment">
+
+    <TextView
+        android:id="@+id/cgpa_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CGPA  "
+        app:layout_constraintEnd_toEndOf="@+id/student_cgpa"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/student_cgpa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="32dp"
+        android:text="8.5"
+        android:textSize="20sp"
+        android:maxLength="4"
+        app:layout_constraintBottom_toBottomOf="@+id/cgpa_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/cgpa_label"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cgpa_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/student_cgpa"
+        app:layout_constraintStart_toStartOf="@+id/student_cgpa"
+        app:layout_constraintTop_toBottomOf="@+id/student_cgpa"
+        tools:text="34.33%" />
+
+    <View
+        android:id="@+id/divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="#0F407C"
+        app:layout_constraintTop_toBottomOf="@+id/cgpa_percentage" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_sem"
+        android:layout_width="match_parent"
+        android:overScrollMode="never"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider_line"
+        tools:listitem="@layout/recycler_view_sem_list" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SettingFragment">
+
+    <TextView
+        android:id="@+id/user_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:text="User Info"
+
+        android:textAppearance="?textAppearanceHeadline6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/edit_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/user_info"
+        app:layout_constraintBottom_toBottomOf="@id/user_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Edit Info"
+        android:textStyle="italic"
+        android:layout_marginEnd="@dimen/margin_medium"/>
+
+
+    <TextView
+        android:id="@+id/student_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Someone's name"
+        app:layout_constraintStart_toStartOf="@id/user_info"
+        app:layout_constraintTop_toBottomOf="@+id/user_info" />
+
+    <TextView
+        android:id="@+id/student_usn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4MH18XXXXX"
+        app:layout_constraintStart_toStartOf="@id/student_name"
+        app:layout_constraintTop_toBottomOf="@+id/student_name" />
+
+    <TextView
+        android:id="@+id/student_baranch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Branch Name"
+        app:layout_constraintStart_toStartOf="@id/student_usn"
+        app:layout_constraintTop_toBottomOf="@+id/student_usn" />
+
+    <TextView
+        android:id="@+id/about_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:textAppearance="?textAppearanceHeadline6"
+        app:layout_constraintStart_toStartOf="@id/student_baranch"
+        app:layout_constraintTop_toBottomOf="@id/student_baranch"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

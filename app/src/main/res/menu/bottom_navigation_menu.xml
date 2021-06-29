@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/calculatorFragment"
+        android:title="Calculator"
+        android:enabled="true"
+        android:icon="@drawable/ic_calculator"/>
+
+    <item
+        android:id="@+id/reportFragment"
+        android:title="Report"
+        android:enabled="true"
+        android:icon="@drawable/ic_report"/>
+
+    <item
+        android:id="@+id/settingFragment"
+        android:title="Settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings"/>
+
+</menu>

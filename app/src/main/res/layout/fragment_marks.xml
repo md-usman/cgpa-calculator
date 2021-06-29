@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:overScrollMode="never"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.MarksFragment">
+
+        <TextView
+            android:id="@+id/sgpa_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="SEMESTER SGPA : "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sem_sgpa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8.5"
+            android:maxLength="4"
+            app:layout_constraintStart_toEndOf="@+id/sgpa_label"
+            app:layout_constraintTop_toTopOf="@+id/sgpa_label" />
+
+        <androidx.appcompat.widget.AppCompatToggleButton
+            android:id="@+id/switch_compat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:textOff="Edit"
+            android:textOn="Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_divider"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#CE93D8"
+            app:layout_constraintTop_toBottomOf="@+id/sem_sgpa" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:enabled="false"
+            android:id="@+id/recycler_view_marks"
+            android:overScrollMode="never"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/view_divider"
+            app:spanCount="2"
+            tools:listitem="@layout/recycler_view_marks_list" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_marks"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
