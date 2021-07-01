@@ -80,11 +80,11 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Ca
                 @Override
                 public void afterTextChanged(Editable s) {
 
-                    if(mSubjects != null) {
-                        if(!s.toString().equals("")) {
+                    if (mSubjects != null) {
+                        if (!s.toString().equals("")) {
                             try {
                                 int marksEdited = Integer.parseInt(s.toString());
-                                if(marksEdited <= 100) {
+                                if (marksEdited <= 100) {
                                     mSubjects.setMarks(marksEdited);
                                     mSubjects.setSubjectCredit(getMarksPoints(marksEdited) * mSubjects.getCredits());
                                     subject_code.setErrorEnabled(false);
@@ -101,6 +101,7 @@ public class CalculatorAdapter extends RecyclerView.Adapter<CalculatorAdapter.Ca
                 }
             });
         }
+
         public void showError() {
             subject_code.setError("invalid");
             mSubjects.setMarks(0);

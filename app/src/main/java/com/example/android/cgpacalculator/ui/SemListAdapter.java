@@ -1,15 +1,11 @@
 package com.example.android.cgpacalculator.ui;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.cgpacalculator.R;
@@ -23,8 +19,8 @@ import java.util.Locale;
 
 public class SemListAdapter extends RecyclerView.Adapter<SemListAdapter.SemSgpaHolder> {
 
-    private List<Sgpa> allSemSgpaList = new ArrayList<>();
     public NavigationListener navigationListener;
+    private List<Sgpa> allSemSgpaList = new ArrayList<>();
 
     @NonNull
     @NotNull
@@ -51,6 +47,10 @@ public class SemListAdapter extends RecyclerView.Adapter<SemListAdapter.SemSgpaH
         notifyDataSetChanged();
     }
 
+    public interface NavigationListener {
+        void onNavigate(Sgpa sgpa);
+    }
+
     public class SemSgpaHolder extends RecyclerView.ViewHolder {
 
         private final TextView semId;
@@ -68,19 +68,10 @@ public class SemListAdapter extends RecyclerView.Adapter<SemListAdapter.SemSgpaH
         }
 
         public void bind(Sgpa sgpa) {
-            semId.setText( String.valueOf(sgpa.getSemId()));
+            semId.setText(String.valueOf(sgpa.getSemId()));
             semPoints.setText(String.valueOf(sgpa.getPoints()));
-            semSgpa.setText(String.format(Locale.ENGLISH, "%.2f",Math.round(sgpa.getSgpa() * 100.0) / 100.0));
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    navigationListener.onNavigate(sgpa);
-                }
-            });
+            semSgpa.setText(String.format(Locale.ENGLISH, "%.2f", Math.round(sgpa.getSgpa() * 100.0) / 100.0));
+            itemView.setOnClickListener(v -> navigationListener.onNavigate(sgpa));
         }
-    }
-
-    public interface NavigationListener {
-        void onNavigate(Sgpa sgpa);
     }
 }

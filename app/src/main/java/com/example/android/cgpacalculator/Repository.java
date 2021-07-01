@@ -1,20 +1,21 @@
 package com.example.android.cgpacalculator;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.android.cgpacalculator.database.StudentDao;
 import com.example.android.cgpacalculator.database.StudentDatabase;
-import com.example.android.cgpacalculator.database.tables.*;
+import com.example.android.cgpacalculator.database.tables.Cgpa;
+import com.example.android.cgpacalculator.database.tables.Marks;
+import com.example.android.cgpacalculator.database.tables.Sgpa;
+import com.example.android.cgpacalculator.database.tables.Student;
 
 import java.util.List;
-import java.util.concurrent.Executors;
 
 public class Repository {
 
-    private StudentDao studentDao;
+    private final StudentDao studentDao;
     StudentDatabase studentDatabase;
 
     public Repository(Application application) {
@@ -39,7 +40,6 @@ public class Repository {
     }
 
     public LiveData<List<Sgpa>> getAllSemSgpa() {
-        Log.d("TESTING", "getAllSemSgpa: getting all sems");
         return studentDao.getAllSemSgpa();
     }
 
@@ -48,7 +48,7 @@ public class Repository {
     }
 
     public LiveData<List<Double>> getSemSgpa(int semId) {
-        return  studentDao.getSemSgpa(semId);
+        return studentDao.getSemSgpa(semId);
     }
 
     public LiveData<List<Marks>> getSemMarks(int semId) {
@@ -73,6 +73,10 @@ public class Repository {
 
     public void insert(Cgpa cgpa) {
         studentDao.insert(cgpa);
+    }
+
+    public void resetDatabase() {
+        StudentDatabase.resetDatabase();
     }
 
 }

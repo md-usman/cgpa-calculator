@@ -3,9 +3,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:overScrollMode="never"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,10 +16,11 @@
             android:id="@+id/calculator_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_normal"
             android:text="SGPA Calculator"
             android:textAppearance="?textAppearanceHeadline4"
+            android:textColor="@color/reply_blue_700"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,38 +29,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="For 2018 Scheme"
+            android:textColor="@color/reply_blue_700"
             app:layout_constraintStart_toStartOf="@+id/calculator_name"
             app:layout_constraintTop_toBottomOf="@+id/calculator_name" />
 
-        <TextView
-            android:id="@+id/select_semester_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Semester : "
-            app:layout_constraintEnd_toStartOf="@id/semester_spinner"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/semester_spinner"
-            app:layout_constraintTop_toTopOf="@+id/semester_spinner" />
 
         <Spinner
             android:id="@+id/semester_spinner"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_medium"
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_large"
+            android:background="@drawable/card_bg"
             android:gravity="center"
+            android:padding="4dp"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@id/select_semester_label"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scheme_label" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/calculator_recycler_view"
             android:layout_width="0dp"
-            android:overScrollMode="never"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,35 +67,54 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="8.5 SGPA"
-            android:visibility="gone"
+            android:fontFamily="@font/libre_baskerville_regular"
+            android:letterSpacing="0.05"
             android:maxLength="4"
-            android:textAppearance="?textAppearanceHeadline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/clear_text"
+            android:text="8.5"
+            android:textAppearance="?textAppearanceHeadline4"
+            android:textColor="@color/reply_red_400"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/sgpa_word_label"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calculator_recycler_view" />
+
+        <TextView
+            android:id="@+id/sgpa_word_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" SGPA"
+            android:textColor="@color/reply_red_400"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@id/calculated_sgpa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/calculated_sgpa" />
 
         <TextView
             android:id="@+id/calculated_percentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(0.0%)"
+            android:textColor="@color/reply_red_400"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/calculated_sgpa"
+            app:layout_constraintEnd_toEndOf="@id/sgpa_word_label"
             app:layout_constraintStart_toStartOf="@id/calculated_sgpa"
             app:layout_constraintTop_toBottomOf="@id/calculated_sgpa" />
 
-        <TextView
+        <Button
             android:id="@+id/clear_text"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/reply_blue_700"
             android:text="Clear Text"
-            android:textSize="20sp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/calculated_percentage"
-            app:layout_constraintEnd_toStartOf="@id/calculated_sgpa"
+            app:layout_constraintBottom_toBottomOf="@id/calculate_sgpa"
+            app:layout_constraintEnd_toStartOf="@id/calculate_sgpa"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/calculated_sgpa" />
+            app:layout_constraintTop_toTopOf="@id/calculate_sgpa" />
 
         <Button
             android:id="@+id/calculate_sgpa"
@@ -109,15 +123,15 @@
             android:layout_marginTop="@dimen/margin_small"
             android:text="Calculate SGPA"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/clear_text"
             app:layout_constraintTop_toBottomOf="@id/calculated_percentage" />
 
-       <Space
-           android:layout_width="wrap_content"
-           android:layout_height="200dp"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toBottomOf="@id/calculate_sgpa"/>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calculate_sgpa" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

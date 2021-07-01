@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.MarksFragment">
@@ -18,46 +17,108 @@
             android:id="@+id/sgpa_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="SEMESTER SGPA : "
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="SGPA"
+            android:textColor="@color/reply_red_400"
+            app:layout_constraintBaseline_toBaselineOf="@id/sem_sgpa"
+            app:layout_constraintEnd_toStartOf="@id/switch_compat"
+            app:layout_constraintStart_toEndOf="@id/sem_sgpa" />
 
         <TextView
             android:id="@+id/sem_sgpa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8.5"
+            android:layout_marginTop="@dimen/margin_small"
+            android:fontFamily="@font/libre_baskerville_regular"
+            android:letterSpacing="0.05"
             android:maxLength="4"
-            app:layout_constraintStart_toEndOf="@+id/sgpa_label"
-            app:layout_constraintTop_toTopOf="@+id/sgpa_label" />
+            android:textAppearance="?textAppearanceHeadline4"
+            android:textColor="@color/reply_red_400"
+            app:layout_constraintEnd_toStartOf="@id/sgpa_label"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="8.5" />
+
+        <TextView
+            android:id="@+id/sgpa_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/reply_red_400"
+            app:layout_constraintEnd_toEndOf="@id/sgpa_label"
+            app:layout_constraintStart_toStartOf="@id/sem_sgpa"
+            app:layout_constraintTop_toBottomOf="@id/sem_sgpa"
+            tools:text="(45.87%)" />
 
         <androidx.appcompat.widget.AppCompatToggleButton
             android:id="@+id/switch_compat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@null"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:background="@drawable/card_bg"
+            android:textColor="@color/reply_blue_700"
             android:textOff="Edit"
             android:textOn="Save"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/sgpa_percentage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/sem_sgpa" />
 
         <View
             android:id="@+id/view_divider"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_medium"
             android:layout_marginBottom="8dp"
-            android:background="#CE93D8"
-            app:layout_constraintTop_toBottomOf="@+id/sem_sgpa" />
+            android:background="@color/reply_blue_700"
+            app:layout_constraintEnd_toStartOf="@id/semester_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sgpa_percentage" />
+
+        <TextView
+            android:id="@+id/semester_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="Semester "
+            android:textColor="@color/reply_blue_700"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/view_divider"
+            app:layout_constraintEnd_toStartOf="@id/semester_id"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/view_divider"
+            app:layout_constraintTop_toTopOf="@id/view_divider" />
+
+        <TextView
+            android:id="@+id/semester_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:textColor="@color/reply_blue_700"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/view_divider2"
+            app:layout_constraintStart_toEndOf="@id/semester_label"
+            app:layout_constraintTop_toTopOf="@id/semester_label"
+            tools:text="5" />
+
+        <View
+            android:id="@+id/view_divider2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:background="@color/reply_blue_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/semester_id"
+            app:layout_constraintTop_toTopOf="@id/view_divider" />
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:enabled="false"
             android:id="@+id/recycler_view_marks"
-            android:overScrollMode="never"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:enabled="false"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/view_divider"
             app:spanCount="2"
@@ -66,9 +127,9 @@
         <Space
             android:layout_width="wrap_content"
             android:layout_height="300dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recycler_view_marks"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view_marks" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

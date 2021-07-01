@@ -9,7 +9,7 @@
         android:id="@+id/reportFragment"
         android:name="com.example.android.cgpacalculator.ui.ReportFragment"
         android:label="fragment_report"
-        tools:layout="@layout/fragment_report" >
+        tools:layout="@layout/fragment_report">
         <action
             android:id="@+id/to_marksFragment"
             app:destination="@id/marksFragment" />
@@ -28,14 +28,14 @@
         android:id="@+id/settingFragment"
         android:name="com.example.android.cgpacalculator.ui.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" >
+        tools:layout="@layout/fragment_setting">
         <action
             android:id="@+id/to_editInfo"
             app:destination="@id/editInfo" />
     </fragment>
     <dialog
         android:id="@+id/editInfo"
-        tools:layout="@layout/fragment_edit_info"
         android:name="com.example.android.cgpacalculator.ui.EditInfo"
-        android:label="editInfo" />
+        android:label="editInfo"
+        tools:layout="@layout/fragment_edit_info" />
 </navigation>

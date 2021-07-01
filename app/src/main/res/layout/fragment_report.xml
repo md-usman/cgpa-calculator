@@ -10,50 +10,85 @@
         android:id="@+id/cgpa_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CGPA  "
-        app:layout_constraintEnd_toEndOf="@+id/student_cgpa"
+        android:letterSpacing="0.05"
+        android:text="CGPA "
+        android:textColor="@color/reply_red_400"
+        app:layout_constraintBaseline_toBaselineOf="@id/student_cgpa"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/student_cgpa" />
 
     <TextView
         android:id="@+id/student_cgpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="32dp"
-        android:text="8.5"
-        android:textSize="20sp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:fontFamily="@font/libre_baskerville_regular"
+        android:letterSpacing="0.05"
         android:maxLength="4"
-        app:layout_constraintBottom_toBottomOf="@+id/cgpa_label"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textAppearance="?textAppearanceHeadline4"
+        android:textColor="@color/reply_red_400"
+        app:layout_constraintEnd_toStartOf="@id/cgpa_label"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/cgpa_label"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="8.5" />
 
     <TextView
         android:id="@+id/cgpa_percentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/student_cgpa"
+        android:textColor="@color/reply_red_400"
+        app:layout_constraintEnd_toEndOf="@+id/cgpa_label"
         app:layout_constraintStart_toStartOf="@+id/student_cgpa"
         app:layout_constraintTop_toBottomOf="@+id/student_cgpa"
         tools:text="34.33%" />
 
     <View
         android:id="@+id/divider_line"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="8dp"
-        android:background="#0F407C"
-        app:layout_constraintTop_toBottomOf="@+id/cgpa_percentage" />
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@color/reply_blue_700"
+        app:layout_constraintEnd_toStartOf="@id/all_semesters_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cgpa_percentage" />
+
+    <TextView
+        android:id="@+id/all_semesters_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:text="All Semesters"
+        android:textColor="@color/reply_blue_700"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/divider_line"
+        app:layout_constraintEnd_toStartOf="@id/divider_line2"
+        app:layout_constraintStart_toEndOf="@id/divider_line"
+        app:layout_constraintTop_toTopOf="@id/divider_line" />
+
+    <View
+        android:id="@+id/divider_line2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:background="@color/reply_blue_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/all_semesters_label"
+        app:layout_constraintTop_toTopOf="@id/divider_line" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_sem"
         android:layout_width="match_parent"
-        android:overScrollMode="never"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider_line"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="16dp"
         tools:listitem="@layout/recycler_view_sem_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

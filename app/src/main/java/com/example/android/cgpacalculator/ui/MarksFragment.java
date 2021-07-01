@@ -2,11 +2,9 @@ package com.example.android.cgpacalculator.ui;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +23,8 @@ import com.example.android.cgpacalculator.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Locale;
+
 public class MarksFragment extends Fragment implements LifecycleObserver {
 
     TextView semSgpa;
@@ -33,6 +33,8 @@ public class MarksFragment extends Fragment implements LifecycleObserver {
     int semId = 1;
     AppCompatToggleButton toggleButton;
     MarksAdapter adapter;
+    TextView sgpaPercentage;
+    TextView semIdTV;
 
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
@@ -53,7 +55,6 @@ public class MarksFragment extends Fragment implements LifecycleObserver {
         adapter = new MarksAdapter();
 
         viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        Log.d("TESTING", "onCreate: sem id in marks fragment : " + semId);
         viewModel.getSemMarks(semId);
     }
 
@@ -65,7 +66,7 @@ public class MarksFragment extends Fragment implements LifecycleObserver {
     }
 
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable  Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
@@ -77,21 +78,27 @@ public class MarksFragment extends Fragment implements LifecycleObserver {
 
         viewModel.getSemMarks(semId).observe(getViewLifecycleOwner(), adapter::setAllSemMarks);
 
+        semIdTV = view.findViewById(R.id.semester_id);
+        semIdTV.setText(String.valueOf(semId));
+
 
         toggleButton = view.findViewById(R.id.switch_compat);
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                adapter.setEditMode(isChecked);
-                if (!isChecked) {
-                    Log.d("TESTING", "Marks List" + adapter.getAllSemMarks());
-                    viewModel.insertAndValidateCgpa(adapter.getAllSemMarks(), semId);
-                }
+        toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            adapter.setEditMode(isChecked);
+            if (!isChecked) {
+                viewModel.insertAndValidateCgpa(adapter.getAllSemMarks(), semId);
             }
         });
 
+        sgpaPercentage = view.findViewById(R.id.sgpa_percentage);
         semSgpa = view.findViewById(R.id.sem_sgpa);
-        viewModel.getSemSgpa(semId).observe(getViewLifecycleOwner(), doubles -> semSgpa.setText(String.valueOf(doubles.get(0))));
+        viewModel.getSemSgpa(semId).observe(getViewLifecycleOwner(), doubles -> {
+            double CalculatedSgpa = Math.round(doubles.get(0) * 100.0) / 100.0;
+            semSgpa.setText(String.format(Locale.ENGLISH, "%.2f", CalculatedSgpa));
+            double calculatedPercentage = (CalculatedSgpa - 0.75) * 10;
+            String percentage = "(" + String.format(Locale.ENGLISH, "%.2f", calculatedPercentage) + "%)";
+            sgpaPercentage.setText(percentage);
+        });
 
     }
 

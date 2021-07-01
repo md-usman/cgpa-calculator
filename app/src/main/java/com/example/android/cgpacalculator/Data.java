@@ -1,6 +1,6 @@
 package com.example.android.cgpacalculator;
 
-import com.example.android.cgpacalculator.database.tables.*;
+import com.example.android.cgpacalculator.database.tables.Subjects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,9 @@ import java.util.List;
 
 public class Data {
 
+
+    public static HashMap<Integer, Integer> semCredits = new HashMap<>();
+    public static HashMap<String, Integer> subjectCredits = new HashMap<>();
 
     public static List<Subjects> getFirstSemSubjects() {
 
@@ -54,7 +57,7 @@ public class Data {
         thirdSemSubjects.add(new Subjects("18XX36", 3, 3));
         thirdSemSubjects.add(new Subjects("18XXX37", 3, 2));
         thirdSemSubjects.add(new Subjects("18XXX38", 3, 2));
-        thirdSemSubjects.add(new Subjects("18XXX39", 3,1));
+        thirdSemSubjects.add(new Subjects("18XXX39", 3, 1));
 
         return thirdSemSubjects;
     }
@@ -71,7 +74,7 @@ public class Data {
         fourthSemSubjects.add(new Subjects("18XX46", 4, 3));
         fourthSemSubjects.add(new Subjects("18XXX47", 4, 2));
         fourthSemSubjects.add(new Subjects("18XXX48", 4, 2));
-        fourthSemSubjects.add(new Subjects("18XXX49", 4,1));
+        fourthSemSubjects.add(new Subjects("18XXX49", 4, 1));
         return fourthSemSubjects;
     }
 
@@ -87,7 +90,7 @@ public class Data {
         fifthSemSubjects.add(new Subjects("18XX56", 5, 3));
         fifthSemSubjects.add(new Subjects("18XXX57", 5, 2));
         fifthSemSubjects.add(new Subjects("18XXX58", 5, 2));
-        fifthSemSubjects.add(new Subjects("18XXX59", 5,1));
+        fifthSemSubjects.add(new Subjects("18XXX59", 5, 1));
 
         return fifthSemSubjects;
     }
@@ -98,8 +101,8 @@ public class Data {
         sixthSemSubjects.add(new Subjects("18XX61", 6, 4));
         sixthSemSubjects.add(new Subjects("18XX62", 6, 4));
         sixthSemSubjects.add(new Subjects("18XX63", 6, 4));
-        sixthSemSubjects.add(new Subjects("18XX64", 6, 3));
-        sixthSemSubjects.add(new Subjects("18XX65", 6, 3));
+        sixthSemSubjects.add(new Subjects("18XX64X", 6, 3));
+        sixthSemSubjects.add(new Subjects("18XX65X", 6, 3));
         sixthSemSubjects.add(new Subjects("18XXX66", 6, 2));
         sixthSemSubjects.add(new Subjects("18XXX67", 6, 2));
         sixthSemSubjects.add(new Subjects("18XXX68", 6, 2));
@@ -111,9 +114,9 @@ public class Data {
 
         seventhSemSubjects.add(new Subjects("18XX71", 7, 3));
         seventhSemSubjects.add(new Subjects("18XX72", 7, 3));
-        seventhSemSubjects.add(new Subjects("18XX73", 7, 3));
-        seventhSemSubjects.add(new Subjects("18XX74", 7, 3));
-        seventhSemSubjects.add(new Subjects("18XX75", 7, 3));
+        seventhSemSubjects.add(new Subjects("18XX73X", 7, 3));
+        seventhSemSubjects.add(new Subjects("18XX74X", 7, 3));
+        seventhSemSubjects.add(new Subjects("18XX75X", 7, 3));
         seventhSemSubjects.add(new Subjects("18XXX76", 7, 2));
         seventhSemSubjects.add(new Subjects("18XXX77", 7, 2));
         seventhSemSubjects.add(new Subjects("18XXX78", 7, 1));
@@ -124,7 +127,7 @@ public class Data {
         List<Subjects> eightSemSubjects = new ArrayList<>(5);
 
         eightSemSubjects.add(new Subjects("18XX81", 8, 3));
-        eightSemSubjects.add(new Subjects("18XX82", 8, 3));
+        eightSemSubjects.add(new Subjects("18XX82X", 8, 3));
         eightSemSubjects.add(new Subjects("18XXX83", 8, 8));
         eightSemSubjects.add(new Subjects("18XXX84", 8, 1));
         eightSemSubjects.add(new Subjects("18XXX85", 8, 3));
@@ -153,35 +156,17 @@ public class Data {
         }
     }
 
-    public static List<Sem> getAllSem() {
-        List<Sem> allSem = new ArrayList<>(8);
-
-        allSem.add(new Sem(1, 20));
-        allSem.add(new Sem(2, 20));
-        allSem.add(new Sem(3,24));
-        allSem.add(new Sem(4, 24));
-        allSem.add(new Sem(5, 25));
-        allSem.add(new Sem(6,24));
-        allSem.add(new Sem(7, 20));
-        allSem.add(new Sem(8, 18));
-        return allSem;
-
-    }
-
-    public static HashMap<Integer, Integer> semCredits = new HashMap<>();
     public static int getSemCredits(int semId) {
-        semCredits.put(1 , 20);
-        semCredits.put(2 , 20);
-        semCredits.put(3 , 24);
-        semCredits.put(4 , 24);
-        semCredits.put(5 , 25);
-        semCredits.put(6 , 24);
-        semCredits.put(7 , 20);
-        semCredits.put(8 , 18);
+        semCredits.put(1, 20);
+        semCredits.put(2, 20);
+        semCredits.put(3, 24);
+        semCredits.put(4, 24);
+        semCredits.put(5, 25);
+        semCredits.put(6, 24);
+        semCredits.put(7, 20);
+        semCredits.put(8, 18);
         return semCredits.get(semId);
     }
-
-    public static HashMap<String, Integer> subjectCredits = new HashMap<String, Integer>();
 
     public static int getSubjectCredits(String subjectCode) {
         subjectCredits.put("18XXX11", 4);
@@ -235,23 +220,23 @@ public class Data {
         subjectCredits.put("18XX61", 4);
         subjectCredits.put("18XX62", 4);
         subjectCredits.put("18XX63", 4);
-        subjectCredits.put("18XX64", 3);
-        subjectCredits.put("18XX65", 3);
+        subjectCredits.put("18XX64X", 3);
+        subjectCredits.put("18XX65X", 3);
         subjectCredits.put("18XXX66", 2);
         subjectCredits.put("18XXX67", 2);
         subjectCredits.put("18XXX68", 2);
 
         subjectCredits.put("18XX71", 3);
         subjectCredits.put("18XX72", 3);
-        subjectCredits.put("18XX73", 3);
-        subjectCredits.put("18XX74", 3);
-        subjectCredits.put("18XX75", 3);
+        subjectCredits.put("18XX73X", 3);
+        subjectCredits.put("18XX74X", 3);
+        subjectCredits.put("18XX75X", 3);
         subjectCredits.put("18XXX76", 2);
         subjectCredits.put("18XXX77", 2);
         subjectCredits.put("18XXX78", 1);
 
         subjectCredits.put("18XX81", 3);
-        subjectCredits.put("18XX82", 3);
+        subjectCredits.put("18XX82X", 3);
         subjectCredits.put("18XXX83", 8);
         subjectCredits.put("18XXX84", 1);
         subjectCredits.put("18XXX85", 3);

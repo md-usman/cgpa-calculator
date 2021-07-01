@@ -1,33 +1,26 @@
 package com.example.android.cgpacalculator.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatToggleButton;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.android.cgpacalculator.MainViewModel;
 import com.example.android.cgpacalculator.R;
-import com.example.android.cgpacalculator.database.tables.Student;
-import com.google.android.material.textfield.TextInputEditText;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class SettingFragment extends Fragment {
 
@@ -35,14 +28,20 @@ public class SettingFragment extends Fragment {
     TextView studentUsn;
     TextView studentBranch;
     MainViewModel viewModel;
-    TextView editInfo;
+    ImageButton editInfo;
+    TextView githubLink;
+    Button resetButton;
+
+    @Override
+    public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
+        viewModel.getAllStudentDetails();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        viewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
-        viewModel.getAllStudentDetails();
 
         return inflater.inflate(R.layout.fragment_setting, container, false);
     }
@@ -53,25 +52,34 @@ public class SettingFragment extends Fragment {
 
         studentName = view.findViewById(R.id.student_name);
         studentUsn = view.findViewById(R.id.student_usn);
-        studentBranch = view.findViewById(R.id.student_baranch);
+        studentBranch = view.findViewById(R.id.student_branch);
         editInfo = view.findViewById(R.id.edit_info);
+        githubLink = view.findViewById(R.id.github_link);
 
-        viewModel.getAllStudentDetails().observe(getViewLifecycleOwner(), new Observer<List<Student>>() {
-            @Override
-            public void onChanged(List<Student> students) {
+        viewModel.getAllStudentDetails().observe(getViewLifecycleOwner(), students -> {
+            if (students != null && students.size() > 0) {
+
                 studentName.setText(students.get(0).getName());
                 studentUsn.setText(students.get(0).getUsn());
                 studentBranch.setText(students.get(0).getBranchName());
-
             }
+
         });
 
-        editInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.to_editInfo);
-            }
+        githubLink.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/md-usman/cgpa-calculator"));
+            startActivity(intent);
         });
+
+        resetButton = view.findViewById(R.id.reset_button);
+        resetButton.setOnClickListener(v -> new AlertDialog.Builder(getContext())
+                .setTitle("Reset All Marks")
+                .setMessage("Are you sure you want to reset your Marks ?")
+                .setPositiveButton("Yes", (dialog, which) -> viewModel.resetDatabase())
+                .setNegativeButton("No", null)
+                .show());
+
+        editInfo.setOnClickListener(v -> Navigation.findNavController(view).navigate(R.id.to_editInfo));
 
     }
 }

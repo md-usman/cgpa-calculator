@@ -2,7 +2,6 @@ package com.example.android.cgpacalculator.ui;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +31,11 @@ public class MarksAdapter extends RecyclerView.Adapter<MarksAdapter.MarksHolder>
         return allSemMarks;
     }
 
+    public void setAllSemMarks(List<Marks> marksList) {
+        this.allSemMarks = marksList;
+        notifyDataSetChanged();
+    }
+
     public void setEditMode(boolean editMode) {
         isEditMode = editMode;
         notifyDataSetChanged();
@@ -41,9 +45,9 @@ public class MarksAdapter extends RecyclerView.Adapter<MarksAdapter.MarksHolder>
     @NotNull
     @Override
     public MarksHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-       View itemView = LayoutInflater.from(parent.getContext())
-               .inflate(R.layout.recycler_view_marks_list, parent, false);
-       return new MarksHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recycler_view_marks_list, parent, false);
+        return new MarksHolder(itemView);
     }
 
     @Override
@@ -51,12 +55,6 @@ public class MarksAdapter extends RecyclerView.Adapter<MarksAdapter.MarksHolder>
 
         holder.bind(allSemMarks.get(position));
 
-    }
-
-
-    public void setAllSemMarks(List<Marks> marksList) {
-        this.allSemMarks = marksList;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -68,7 +66,7 @@ public class MarksAdapter extends RecyclerView.Adapter<MarksAdapter.MarksHolder>
 
         private final TextInputLayout subjectCode;
         private final TextInputEditText subjectMarks;
-            private Marks mMarks = null;
+        private Marks mMarks = null;
 
         public MarksHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -89,10 +87,10 @@ public class MarksAdapter extends RecyclerView.Adapter<MarksAdapter.MarksHolder>
                 @Override
                 public void afterTextChanged(Editable s) {
                     if (mMarks != null) {
-                        if(!s.toString().equals("")) {
+                        if (!s.toString().equals("")) {
                             try {
                                 int marksEdited = Integer.parseInt(s.toString());
-                                if(marksEdited <= 100) {
+                                if (marksEdited <= 100) {
                                     mMarks.setMarks(marksEdited);
                                     int points = getMarksPoints(marksEdited);
                                     mMarks.setPoints(points * getSubjectCredits(mMarks.getSubjectCode()));

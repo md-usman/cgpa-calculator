@@ -6,7 +6,10 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.android.cgpacalculator.database.tables.*;
+import com.example.android.cgpacalculator.database.tables.Cgpa;
+import com.example.android.cgpacalculator.database.tables.Marks;
+import com.example.android.cgpacalculator.database.tables.Sgpa;
+import com.example.android.cgpacalculator.database.tables.Student;
 
 import java.util.List;
 
@@ -16,7 +19,7 @@ public interface StudentDao {
     @Insert
     void insert(Student student);
 
-    @Query("DELETE FROM SGPA_TABLE")
+    @Query("DELETE FROM student_table")
     void deleteAllStudents();
 
 

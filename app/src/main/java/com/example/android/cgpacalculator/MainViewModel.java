@@ -1,14 +1,15 @@
 package com.example.android.cgpacalculator;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import com.example.android.cgpacalculator.database.tables.*;
+import com.example.android.cgpacalculator.database.tables.Cgpa;
+import com.example.android.cgpacalculator.database.tables.Marks;
+import com.example.android.cgpacalculator.database.tables.Sgpa;
+import com.example.android.cgpacalculator.database.tables.Student;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.concurrent.Executors;
 
 import static com.example.android.cgpacalculator.Data.getSemCredits;
-import static com.example.android.cgpacalculator.database.StudentDatabase.databaseWriteExecutor;
 
 public class MainViewModel extends AndroidViewModel {
 
@@ -45,7 +45,9 @@ public class MainViewModel extends AndroidViewModel {
         return repository.getAllSemSgpa();
     }
 
-
+    public void resetDatabase() {
+        repository.resetDatabase();
+    }
 
     public void editStudentInfo(Student student) {
 
@@ -62,17 +64,16 @@ public class MainViewModel extends AndroidViewModel {
     public void insertAndValidateCgpa(List<Marks> marksList, int semId) {
         Executors.newSingleThreadExecutor().execute(() -> {
             repository.insertAllMarks(marksList);
-            Log.d("TESTING", "Marks List: " + marksList);
             List<Integer> creditSums = repository.getPointsTotal(semId);
-            double sgpa = (double)creditSums.get(0) / getSemCredits(semId);
+            double sgpa = (double) creditSums.get(0) / getSemCredits(semId);
             int semPoints = creditSums.get(0);
             repository.insert(new Sgpa(semId, sgpa, semPoints));
 
             List<Sgpa> allSemSgpas = repository.getAllSemSgpaToCgpa();
             double semCreditPointsTotal = 0;
             double semCreditsTotal = 0;
-            for(Sgpa sgpa1: allSemSgpas) {
-                if(sgpa1.getPoints() != 0) {
+            for (Sgpa sgpa1 : allSemSgpas) {
+                if (sgpa1.getPoints() != 0) {
                     semCreditPointsTotal += sgpa1.getPoints();
                     semCreditsTotal += getSemCredits(sgpa1.getSemId());
                 }
