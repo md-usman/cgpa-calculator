@@ -49,7 +49,7 @@ public class Data {
 
         List<Subjects> thirdSemSubjects = new ArrayList<>(9);
 
-        thirdSemSubjects.add(new Subjects("18XXX31", 3, 3));
+        thirdSemSubjects.add(new Subjects("18XX31", 3, 3));
         thirdSemSubjects.add(new Subjects("18XX32", 3, 4));
         thirdSemSubjects.add(new Subjects("18XX33", 3, 3));
         thirdSemSubjects.add(new Subjects("18XX34", 3, 3));
@@ -66,7 +66,7 @@ public class Data {
 
         List<Subjects> fourthSemSubjects = new ArrayList<>(9);
 
-        fourthSemSubjects.add(new Subjects("18XXX41", 4, 3));
+        fourthSemSubjects.add(new Subjects("18XX41", 4, 3));
         fourthSemSubjects.add(new Subjects("18XX42", 4, 4));
         fourthSemSubjects.add(new Subjects("18XX43", 4, 3));
         fourthSemSubjects.add(new Subjects("18XX44", 4, 3));
@@ -187,7 +187,7 @@ public class Data {
         subjectCredits.put("18XXX27", 1);
         subjectCredits.put("18XXX28", 1);
 
-        subjectCredits.put("18XXX31", 3);
+        subjectCredits.put("18XX31", 3);
         subjectCredits.put("18XX32", 4);
         subjectCredits.put("18XX33", 3);
         subjectCredits.put("18XX34", 3);
@@ -197,7 +197,7 @@ public class Data {
         subjectCredits.put("18XXX38", 2);
         subjectCredits.put("18XXX39", 1);
 
-        subjectCredits.put("18XXX41", 3);
+        subjectCredits.put("18XX41", 3);
         subjectCredits.put("18XX42", 4);
         subjectCredits.put("18XX43", 3);
         subjectCredits.put("18XX44", 3);

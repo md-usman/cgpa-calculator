@@ -74,7 +74,7 @@ public abstract class StudentDatabase extends RoomDatabase {
                 studentDao.insert(new Marks(2, "18XXX28", 0, 0));
 
                 // reset third sem
-                studentDao.insert(new Marks(3, "18XXX31", 0, 0));
+                studentDao.insert(new Marks(3, "18XX31", 0, 0));
                 studentDao.insert(new Marks(3, "18XX32", 0, 0));
                 studentDao.insert(new Marks(3, "18XX33", 0, 0));
                 studentDao.insert(new Marks(3, "18XX34", 0, 0));
@@ -85,7 +85,7 @@ public abstract class StudentDatabase extends RoomDatabase {
                 studentDao.insert(new Marks(3, "18XXX39", 0, 0));
 
                 // reset fourth sem
-                studentDao.insert(new Marks(4, "18XXX41", 0, 0));
+                studentDao.insert(new Marks(4, "18XX41", 0, 0));
                 studentDao.insert(new Marks(4, "18XX42", 0, 0));
                 studentDao.insert(new Marks(4, "18XX43", 0, 0));
                 studentDao.insert(new Marks(4, "18XX44", 0, 0));
@@ -192,7 +192,7 @@ public abstract class StudentDatabase extends RoomDatabase {
             studentDao.insert(new Marks(2, "18XXX28", 0, 0));
 
             // reset third sem
-            studentDao.insert(new Marks(3, "18XXX31", 0, 0));
+            studentDao.insert(new Marks(3, "18XX31", 0, 0));
             studentDao.insert(new Marks(3, "18XX32", 0, 0));
             studentDao.insert(new Marks(3, "18XX33", 0, 0));
             studentDao.insert(new Marks(3, "18XX34", 0, 0));
@@ -203,7 +203,7 @@ public abstract class StudentDatabase extends RoomDatabase {
             studentDao.insert(new Marks(3, "18XXX39", 0, 0));
 
             // reset fourth sem
-            studentDao.insert(new Marks(4, "18XXX41", 0, 0));
+            studentDao.insert(new Marks(4, "18XX41", 0, 0));
             studentDao.insert(new Marks(4, "18XX42", 0, 0));
             studentDao.insert(new Marks(4, "18XX43", 0, 0));
             studentDao.insert(new Marks(4, "18XX44", 0, 0));

@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Cgpa Calculator</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_cgpa_calc">The <b>Cgpa Calculator </b>app is used to calculate the CGPA (Cumulative Grade Point Average) and SGPA (Semester Grade Point Average) of students under the VTU 2018 scheme.\n\nThis App is developed by <b>Mohammed Usman</b>, student at MIT, Mysore and it is available on Github.</string>
+    <string name="calculator_note"><b>Note: </b>For failed subjects keep the marks to 0.</string>
     <string name="click_here"><u>https://github.com/md-usman/cgpa-calculator</u></string>
+    <string name="setting_note"><b>Note: </b>For subjects which are cleared in more than one attempt, update the marks on clearing the subject, the CGPA will reflect the latest score.
+
+</string>
 
     <string-array name="semester_array">
         <item>Sem 1</item>

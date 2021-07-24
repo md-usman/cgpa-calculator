@@ -56,7 +56,11 @@ public class EditInfo extends DialogFragment {
         branchSpinner.setAdapter(adapter);
 
         saveStudentInfo.setOnClickListener(v -> {
-            viewModel.editStudentInfo(new Student(studentUsn.getText().toString(), studentName.getText().toString(), branchSpinner.getSelectedItem().toString()));
+            String name = studentName.getText().toString();
+            if(name.length() == 0) {
+                name = "Your Name";
+            }
+            viewModel.editStudentInfo(new Student(studentUsn.getText().toString(), name, branchSpinner.getSelectedItem().toString()));
             dismiss();
         });
         cancelStudentInfo.setOnClickListener(v -> dismiss());

@@ -53,10 +53,11 @@
             android:id="@+id/calculator_recycler_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginTop="24dp"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/semester_spinner"
             app:spanCount="2"
@@ -125,6 +126,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/clear_text"
             app:layout_constraintTop_toBottomOf="@id/calculated_percentage" />
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_normal"
+            android:justificationMode="inter_word"
+            android:textAlignment="center"
+            android:lineSpacingExtra="2dp"
+            android:text="@string/calculator_note"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/reply_blue_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calculate_sgpa"/>
 
         <Space
             android:layout_width="wrap_content"
